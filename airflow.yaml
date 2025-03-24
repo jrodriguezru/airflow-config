@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: airflow
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: airflow
+    repoURL: https://airflow.apache.org
+    targetRevision: {{ .Values.airflow.helmChartVersion }}
+    helm:
+      values: |
+        dags:  
+          gitSync:    
+            enabled: true    
+            repo: "https://github.com/jrodriguezru/aflwdag.git"
+            branch: "main"
+            depth: 1
+            rev: HEAD
+        createUserJob:
+          useHelmHooks: false
+          applyCustomEnv: false
+          jobAnnotations:
+            "argocd.argoproj.io/hook": PostSync
+            "argocd.argoproj.io/hook-delete-policy": HookSucceeded
+        migrateDatabaseJob:
+          useHelmHooks: false
+          applyCustomEnv: false
+          jobAnnotations:
+              "argocd.argoproj.io/hook": Sync
+        useStandardNaming: true
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: airflow
+  
