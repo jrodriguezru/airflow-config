@@ -13,7 +13,6 @@ spec:
       values: |
         webserver:
           startupProbe:
-            initialDelaySeconds: 20
             timeoutSeconds: 40
             periodSeconds: 30
             failureThreshold: 10
