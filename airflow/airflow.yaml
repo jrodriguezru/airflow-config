@@ -8,7 +8,6 @@ spec:
   source:
     chart: airflow
     repoURL: https://airflow.apache.org
-    targetRevision: {{ .Values.airflow.helmChartVersion }}
     helm:
       values: |
         dags:  
