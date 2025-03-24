@@ -8,6 +8,7 @@ spec:
   source:
     chart: airflow
     repoURL: https://airflow.apache.org
+    targetRevision: "1.14.0"
     helm:
       values: |
         dags:  
