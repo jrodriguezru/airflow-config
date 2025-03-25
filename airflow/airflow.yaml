@@ -13,9 +13,9 @@ spec:
       values: |
         webserver:
           startupProbe:
-            timeoutSeconds: 40
-            periodSeconds: 30
-            failureThreshold: 10
+            timeoutSeconds: 50
+            periodSeconds: 40
+            failureThreshold: 15
         dags:  
           gitSync:    
             enabled: true    
