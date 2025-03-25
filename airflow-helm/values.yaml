@@ -1,0 +1,27 @@
+executor: CeleryExecutor
+
+webserver:
+  resources:
+    requests:
+      cpu: 300m
+      memory: 1Gi
+
+workers:
+  replicas: 3
+  persistence:
+    enabled: true
+    size: 5Gi
+
+postgresql:
+  enabled: true
+  auth:
+    existingSecret: airflow-postgres-secret
+
+dag:
+  persistenceEnabled: true
+  gitSync:
+    enabled: true
+    repo: https://github.com/jrodriguezru/aflwdag
+    branch: main
+    subPath: dags/
+  
