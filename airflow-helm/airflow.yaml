@@ -1,0 +1,17 @@
+project: default
+source:
+  repoURL: https://github.com/jrodriguezru/airflow-config
+  path: airflow-helm
+  targetRevision: main
+  helm:
+    valueFiles:
+      - values.yaml
+destination:
+  server: https://kubernetes.default.svc
+  namespace: airflow
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+  syncOptions:
+    - CreateNamespace=true
