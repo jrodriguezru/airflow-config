@@ -1,11 +1,25 @@
 project: default
 source:
-  repoURL: https://github.com/jrodriguezru/airflow-config
-  path: airflow-helm
+  repoURL: https://github.com/apache/airflow.git
+  path: chart
   targetRevision: main
   helm:
-    valueFiles:
-      - values.yaml
+    values:
+      webserver:
+        resources:
+          requests:
+            cpu: 300m
+            memory: 1Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+      dag:
+        persistenceEnabled: true
+        gitSync:
+          enabled: true
+          repo: https://github.com/jrodriguezru/aflwdag
+          branch: main
+          subPath: dags/
 destination:
   server: https://kubernetes.default.svc
   namespace: airflow
