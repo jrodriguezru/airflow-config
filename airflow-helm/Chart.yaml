@@ -1,9 +1,7 @@
 project: default
 source:
-  repoURL: https://github.com/apache/airflow.git
-  path: chart
-  targetRevision: main
-  chart: Chart
+  repoURL: https://airflow.apache.org
+  targetRevision: '1.14'
   helm:
     values: |
       webserver:
@@ -21,6 +19,7 @@ source:
           repo: https://github.com/jrodriguezru/aflwdag
           branch: main
           subPath: dags/
+  chart: airflow
 destination:
   server: https://kubernetes.default.svc
   namespace: airflow
@@ -30,3 +29,4 @@ syncPolicy:
     selfHeal: true
   syncOptions:
     - CreateNamespace=true
+
