@@ -1,21 +1,11 @@
-executor: CeleryExecutor
-
 webserver:
   resources:
     requests:
       cpu: 300m
       memory: 1Gi
-
-workers:
-  replicas: 3
-  persistence:
-    enabled: true
-    size: 5Gi
-
-postgresql:
-  enabled: true
-  auth:
-    existingSecret: airflow-postgres-secret
+    limits:
+      cpu: 1
+      memory: 2Gi
 
 dag:
   persistenceEnabled: true
