@@ -4,7 +4,7 @@ source:
   path: chart
   targetRevision: main
   helm:
-    values:
+    values: |
       webserver:
         resources:
           requests:
