@@ -3,6 +3,7 @@ source:
   repoURL: https://github.com/apache/airflow.git
   path: chart
   targetRevision: main
+  chart: Chart
   helm:
     values: |
       webserver:
